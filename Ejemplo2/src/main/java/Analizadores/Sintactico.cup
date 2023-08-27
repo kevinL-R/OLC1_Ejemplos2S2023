@@ -1,0 +1,74 @@
+package Analizadores;
+import java_cup.runtime.*;
+import main.ejemplo2.*;
+import java.util.ArrayList;
+
+parser code {:
+    public GraficarBarras gb = new GraficarBarras();
+    public GraficaPie gp = new GraficaPie();
+    private ArrayList<Double> Values = new ArrayList<Double>();
+    private ArrayList<String> ValuesX = new ArrayList<String>();
+    String titulo;
+    String titulox;
+    String tituloy;
+
+:}
+
+terminal Rvoid, RMain, pabre, pcierra, allave,RGB,cllave,igual,pcoma,REjex,RValores,RTituloX,RTituloY,RTitulo,coma,RGP;
+terminal String decimales;
+terminal String cadenas;
+
+non terminal INICIO,INSTRUCCIONES,INSTRUCCION, GRAFICAB, INSTRUCCIONESGB, INSTRUCCIONGB, LISTAEJEX,
+                    LISTAVALORES, ELEMENTOSEJEX, ELEMENTOSVALORES;
+
+
+INICIO ::= Rvoid RMain pabre pcierra allave INSTRUCCIONES cllave
+
+;
+
+INSTRUCCIONES ::= INSTRUCCIONES INSTRUCCION
+                                | INSTRUCCION ;
+
+INSTRUCCION ::=  GRAFICAB
+;
+
+
+GRAFICAB ::= Rvoid RGB pabre pcierra allave INSTRUCCIONESGB cllave {:
+    gb.Graficar(titulo,titulox,tituloy,ValuesX,Values);
+   titulo="";
+    ValuesX.clear();
+    Values.clear();
+
+:}
+    | Rvoid RGP pabre  pcierra allave INSTRUCCIONESGB cllave{:
+         gp.Graficar(titulo, ValuesX, Values);
+         titulo="";
+         ValuesX.clear();
+         Values.clear();
+:}
+;
+INSTRUCCIONESGB ::= INSTRUCCIONESGB INSTRUCCIONGB
+                                    | INSTRUCCIONGB ;
+
+INSTRUCCIONGB ::= RTitulo igual cadenas:a {: titulo = (String)a;:} pcoma
+                                | REjex igual allave LISTAEJEX cllave pcoma
+                                | RValores igual allave LISTAVALORES  cllave pcoma
+                                | RTituloX igual cadenas:a {: titulox=(String)a;:} pcoma
+                                | RTituloY igual cadenas:a {:tituloy=(String)a;:} pcoma   
+;
+
+LISTAEJEX ::= LISTAEJEX coma ELEMENTOSEJEX:a {: ValuesX.add((String)a); :}
+                    | ELEMENTOSEJEX:a  {: ValuesX.add((String)a); RESULT = ValuesX; :}
+
+;
+LISTAVALORES ::= LISTAVALORES coma ELEMENTOSVALORES:a {: Values.add((Double)a); :}
+                            |ELEMENTOSVALORES:a  {: Values.add((Double)a); RESULT = Values; :}
+
+;
+
+ELEMENTOSEJEX ::= cadenas:a {: RESULT= a; :}
+
+;
+ELEMENTOSVALORES ::= decimales:a {: RESULT= Double.parseDouble(a); :}
+
+;
