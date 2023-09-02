@@ -1,0 +1,23 @@
+void main (){
+
+void DeFinirGlobales(){
+        titulobarra = "reporte  1 ts";
+        tituloxbarra = "atributo ts";
+        valor1 = 60.0;
+        valor2 = 2.2;
+}
+void GraficaBarras(){
+     Titulo= titulobarra;
+     Ejex= { "valor1", "valor2"};
+     Valores= {1.1,valor2 };
+     TituloX= tituloxbarra;
+    TituloY= "Puntaje";
+}
+void GraficaPIE(){
+
+    titulo = "reporte2";
+    Ejex= { "valor1", "valor2"};
+    Valores= {valor1,40.0 };
+}
+
+}
