@@ -1,0 +1,87 @@
+digraph G {
+node[shape="box"]Nodo0[label="RAIZ"];
+Nodo1[label="DEC_METODO"];
+Nodo0->Nodo1;
+Nodo2[label="IDENTIFICADOR 
+ funcion1"];
+Nodo1->Nodo2;
+Nodo3[label="INSTRUCCIONES"];
+Nodo1->Nodo3;
+Nodo4[label="DECLARACION"];
+Nodo3->Nodo4;
+Nodo5[label="TIPO 
+ BOLEANO"];
+Nodo4->Nodo5;
+Nodo6[label="ID 
+ a"];
+Nodo4->Nodo6;
+Nodo7[label=" OR
+ ||"];
+Nodo4->Nodo7;
+Nodo8[label=" VAL_BOLEANO
+ true"];
+Nodo7->Nodo8;
+Nodo9[label=" VAL_BOLEANO
+ false"];
+Nodo7->Nodo9;
+Nodo10[label="DECLARACION"];
+Nodo3->Nodo10;
+Nodo11[label="TIPO 
+ ENTERO"];
+Nodo10->Nodo11;
+Nodo12[label="ID 
+ b"];
+Nodo10->Nodo12;
+Nodo13[label=" SUMA
+ +"];
+Nodo10->Nodo13;
+Nodo14[label=" SUMA
+ +"];
+Nodo13->Nodo14;
+Nodo15[label=" VAL_ENTERO
+ 4"];
+Nodo14->Nodo15;
+Nodo16[label=" VAL_ENTERO
+ 4"];
+Nodo14->Nodo16;
+Nodo17[label=" VAL_ENTERO
+ 5"];
+Nodo13->Nodo17;
+Nodo18[label="DECLARACION"];
+Nodo3->Nodo18;
+Nodo19[label="TIPO 
+ ENTERO"];
+Nodo18->Nodo19;
+Nodo20[label="ID 
+ c"];
+Nodo18->Nodo20;
+Nodo21[label=" SUMA
+ +"];
+Nodo18->Nodo21;
+Nodo22[label=" VAL_IDENTIFICADOR
+ b"];
+Nodo21->Nodo22;
+Nodo23[label=" VAL_BOLEANO
+ true"];
+Nodo21->Nodo23;
+Nodo24[label="PRINT"];
+Nodo3->Nodo24;
+Nodo25[label=" VAL_IDENTIFICADOR
+ a"];
+Nodo24->Nodo25;
+Nodo26[label="PRINT"];
+Nodo3->Nodo26;
+Nodo27[label=" VAL_IDENTIFICADOR
+ b"];
+Nodo26->Nodo27;
+Nodo28[label="PRINT"];
+Nodo3->Nodo28;
+Nodo29[label=" VAL_IDENTIFICADOR
+ c"];
+Nodo28->Nodo29;
+Nodo30[label="MAIN"];
+Nodo0->Nodo30;
+Nodo31[label="LLAMADA 
+ funcion1"];
+Nodo30->Nodo31;
+}
