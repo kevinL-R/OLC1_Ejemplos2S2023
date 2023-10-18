@@ -71,6 +71,56 @@ const Instruccion ={
             linea: _linea,
             columna: _columna
         }
+    },nuevoIf: function (_expresion, _instrucciones, _linea, _columna) {
+        return{
+            tipo: TIPO_INSTRUCCION.IF,
+            expresion: _expresion,
+            instrucciones: _instrucciones,
+            linea: _linea,
+            columna: _columna
+
+        }
+
+    },nuevoIfElse: function (_expresion, _instruccionesIf, _instruccionesElse, _linea, _columna) {
+        return{
+            tipo: TIPO_INSTRUCCION.IFCE,
+            expresion: _expresion,
+            instruccionesIf: _instruccionesIf,
+            instruccionesElse: _instruccionesElse,
+            linea: _linea,
+            columna: _columna
+
+        }
+    },nuevoElseIf: function (_expresion, _instruccionesElseif, _linea, _columna) { 
+        return{
+            tipo: TIPO_INSTRUCCION.ELSEIF,
+            expresion: _expresion,
+            instruccionesElseIf: _instruccionesElseif,
+            linea: _linea,
+            columna: _columna
+        }
+
+    },nuevoIfConElseIf: function (_expresion, _instruccionesIf, _lista_elseif,_instruccionesElse, _linea, _columna) {
+        return{
+            tipo: TIPO_INSTRUCCION.IFCEIF,
+            expresion: _expresion,
+            instruccionesIf: _instruccionesIf,
+            lista_elseif: _lista_elseif,
+            instruccionesElse: _instruccionesElse,
+            linea: _linea,
+            columna: _columna
+        }
+
+    }, nuevoWhile: function (_expresion, _instrucciones, _linea, _columna) {
+        return{
+            tipo: TIPO_INSTRUCCION.WHILE,
+            expresion: _expresion,
+            instrucciones: _instrucciones,
+            linea: _linea,
+            columna: _columna
+
+        }
+
     }
     
 

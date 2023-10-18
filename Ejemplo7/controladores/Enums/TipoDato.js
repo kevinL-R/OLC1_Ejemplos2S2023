@@ -5,4 +5,4 @@ const TIPO_DATO={
     BOOL: 'BOLEANO',
     CHAR: 'CHAR',
 }
-module.exports= TIPO_DATO
+module.exports= TIPO_DATO 

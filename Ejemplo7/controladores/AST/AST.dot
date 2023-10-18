@@ -10,78 +10,51 @@ Nodo1->Nodo3;
 Nodo4[label="DECLARACION"];
 Nodo3->Nodo4;
 Nodo5[label="TIPO 
- BOLEANO"];
+ ENTERO"];
 Nodo4->Nodo5;
 Nodo6[label="ID 
  a"];
 Nodo4->Nodo6;
-Nodo7[label=" OR
- ||"];
+Nodo7[label=" VAL_ENTERO
+ 0"];
 Nodo4->Nodo7;
-Nodo8[label=" VAL_BOLEANO
- true"];
-Nodo7->Nodo8;
-Nodo9[label=" VAL_BOLEANO
- false"];
-Nodo7->Nodo9;
-Nodo10[label="DECLARACION"];
-Nodo3->Nodo10;
-Nodo11[label="TIPO 
- ENTERO"];
-Nodo10->Nodo11;
-Nodo12[label="ID 
- b"];
-Nodo10->Nodo12;
-Nodo13[label=" SUMA
- +"];
-Nodo10->Nodo13;
-Nodo14[label=" SUMA
- +"];
-Nodo13->Nodo14;
-Nodo15[label=" VAL_ENTERO
- 4"];
-Nodo14->Nodo15;
-Nodo16[label=" VAL_ENTERO
- 4"];
-Nodo14->Nodo16;
-Nodo17[label=" VAL_ENTERO
- 5"];
-Nodo13->Nodo17;
-Nodo18[label="DECLARACION"];
-Nodo3->Nodo18;
-Nodo19[label="TIPO 
- ENTERO"];
-Nodo18->Nodo19;
-Nodo20[label="ID 
- c"];
-Nodo18->Nodo20;
-Nodo21[label=" SUMA
- +"];
-Nodo18->Nodo21;
-Nodo22[label=" VAL_IDENTIFICADOR
- b"];
-Nodo21->Nodo22;
-Nodo23[label=" VAL_BOLEANO
- true"];
-Nodo21->Nodo23;
-Nodo24[label="PRINT"];
-Nodo3->Nodo24;
-Nodo25[label=" VAL_IDENTIFICADOR
+Nodo8[label="WHILE"];
+Nodo3->Nodo8;
+Nodo9[label="EXPRESION"];
+Nodo8->Nodo9;
+Nodo10[label=" MENOR
+ <"];
+Nodo9->Nodo10;
+Nodo11[label=" VAL_IDENTIFICADOR
  a"];
-Nodo24->Nodo25;
-Nodo26[label="PRINT"];
-Nodo3->Nodo26;
-Nodo27[label=" VAL_IDENTIFICADOR
- b"];
-Nodo26->Nodo27;
-Nodo28[label="PRINT"];
-Nodo3->Nodo28;
-Nodo29[label=" VAL_IDENTIFICADOR
- c"];
-Nodo28->Nodo29;
-Nodo30[label="MAIN"];
-Nodo0->Nodo30;
-Nodo31[label="LLAMADA 
+Nodo10->Nodo11;
+Nodo12[label=" VAL_ENTERO
+ 9"];
+Nodo10->Nodo12;
+Nodo13[label="INSTRUCCIONES"];
+Nodo8->Nodo13;
+Nodo14[label="PRINT"];
+Nodo13->Nodo14;
+Nodo15[label=" VAL_IDENTIFICADOR
+ a"];
+Nodo14->Nodo15;
+Nodo16[label="ASIGNACION"];
+Nodo13->Nodo16;
+Nodo17[label="IDENTIFICADOR 
+ a"];
+Nodo16->Nodo17;
+Nodo18[label=" SUMA
+ +"];
+Nodo16->Nodo18;
+Nodo19[label=" VAL_IDENTIFICADOR
+ a"];
+Nodo18->Nodo19;
+Nodo20[label=" VAL_ENTERO
+ 1"];
+Nodo18->Nodo20;
+Nodo21[label="MAIN"];
+Nodo0->Nodo21;
+Nodo22[label="LLAMADA 
  funcion1"];
-Nodo30->Nodo31;
+Nodo21->Nodo22;
 }

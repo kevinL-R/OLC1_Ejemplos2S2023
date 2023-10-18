@@ -14,7 +14,7 @@ function Aritmetica(_expresion,_ambito){
     }
 }
 function suma(_opizq, _opDer, _ambito) {
-    const opIzq = Aritmetica(_opizq, _ambito)  
+    const opIzq = Aritmetica(_opizq, _ambito)
     const opDer = Aritmetica(_opDer, _ambito)
     
     const tipores = TipoResultado(opIzq.tipo, opDer.tipo)  

@@ -17,6 +17,9 @@
 "false"                 return 'Rfalse'
 "void"                  return 'Rvoid'
 "main"                  return 'Rmain'
+"if"                    return 'Rif'
+"else"                  return 'Relse'
+"While"                 return 'Rwhile'
 
 [0-9]+("."[0-9]+)\b    return 'decimal'
 "."                     return 'punto'
@@ -119,7 +122,24 @@ INSTRUCCIONES: INSTRUCCIONES INSTRUCCION {$$ = $1; $1.push($2);}
 INSTRUCCION: DEC_VAR ptcoma {$$=$1;}                                           //DECLARACION DE CADA COMPONENTE DEL CUERPO DE MANERA RECURSIVA
         |ASIG_VAR ptcoma {$$=$1;}
         |PRINT {$$=$1;}
+        |IF {$$=$1;}
+        |WHILE {$$=$1;}
 
+;
+
+IF: Rif parA EXPRESION parC llaveA INSTRUCCIONES  llaveC {$$ = new INSTRUCCION.nuevoIf($3, $6 , this._$.first_line,this._$.first_column+1)}
+        |Rif parA EXPRESION parC llaveA INSTRUCCIONES llaveC Relse llaveA INSTRUCCIONES llaveC {$$ = new INSTRUCCION.nuevoIfElse($3, $6, $10 , this._$.first_line,this._$.first_column+1)}
+        | Rif parA EXPRESION parC llaveA INSTRUCCIONES  llaveC ELSEIF  {$$= new INSTRUCCION.nuevoIfConElseIf($3, $6, $8, null, this._$.first_line,this._$.first_column+1)}
+        | Rif parA EXPRESION parC llaveA INSTRUCCIONES llaveC ELSEIF Relse llaveA INSTRUCCIONES llaveC {$$= new INSTRUCCION.nuevoIfConElseIf($3, $6, $8, $11, this._$.first_line,this._$.first_column+1)}
+;
+ELSEIF:ELSEIF CONEIF {$1.push($2); $$=$1;}
+      | CONEIF {$$=[$1];}
+;
+
+CONEIF: Relse Rif parA EXPRESION parC llaveA INSTRUCCIONES llaveC {$$ = new INSTRUCCION.nuevoElseIf($4, $7 , this._$.first_line,this._$.first_column+1) }
+;
+
+WHILE: Rwhile parA EXPRESION parC llaveA INSTRUCCIONES llaveC  {$$ = new INSTRUCCION.nuevoWhile($3, $6 , this._$.first_line,this._$.first_column+1)}
 ;
 PRINT: Rprint parA EXPRESION parC ptcoma {$$ = INSTRUCCION.nuevoPrint($3, this._$.first_line,this._$.first_column+1)}
 ;
