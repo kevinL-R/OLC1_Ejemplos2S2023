@@ -4,6 +4,13 @@ const TIPO_OPERACION = require("../Enums/TipoOperacion")
 const TIPO_VALOR = require("../Enums/TipoValor")
 const TipoResultado = require("./TipoResultado")
 const ValorExpresion = require("./ValorExpresion")  
+const Round = require("./Round");
+const ToLower = require("./ToLower");
+const ToUpper = require("./ToUpper");
+const Truncate = require("./Truncate");
+const Typeof = require('./TypeOf');
+const Length = require("./Length"); 
+
 function Aritmetica(_expresion,_ambito){
     if (_expresion.tipo === TIPO_VALOR.DECIMAL || _expresion.tipo === TIPO_VALOR.BOOL || _expresion.tipo === TIPO_VALOR.ENTERO ||
         _expresion.tipo === TIPO_VALOR.CADENA || _expresion.tipo === TIPO_VALOR.IDENTIFICADOR || _expresion.tipo === TIPO_VALOR.CHAR || _expresion.tipo === TIPO_INSTRUCCION.LLAMADA_METODO) {
@@ -11,6 +18,27 @@ function Aritmetica(_expresion,_ambito){
     }else if (_expresion.tipo === TIPO_OPERACION.SUMA) {
         // console.log("suma")
         return suma(_expresion.opIzq, _expresion.opDer, _ambito)
+    }
+    else if (_expresion.tipo_dato===TIPO_INSTRUCCION.TOLOWER){  
+        return ToLower(_expresion,_ambito)
+
+    } else if (_expresion.tipo_dato===TIPO_INSTRUCCION.TOUPPER){
+        return ToUpper(_expresion,_ambito)
+        
+    }else if (_expresion.tipo_dato===TIPO_INSTRUCCION.TRUNCATE){
+        return Truncate(_expresion,_ambito)
+
+    }
+    else if (_expresion.tipo_dato===TIPO_INSTRUCCION.ROUND){
+        return Round(_expresion,_ambito)
+
+    }else if (_expresion.tipo_dato===TIPO_INSTRUCCION.TYPEOF){
+        return Typeof(_expresion,_ambito)
+
+    }else if (_expresion.tipo_dato===TIPO_INSTRUCCION.LENGTH){
+        //console.log(_expresion)
+        return Length(_expresion,_ambito)
+
     }
 }
 function suma(_opizq, _opDer, _ambito) {

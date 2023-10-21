@@ -5,6 +5,12 @@ const Aritmetica = require("./Aritmetica.js");
 const Logica = require("./OpLogica");
 const Relacional = require("./Relacional");
 const ValorExpresion = require("./ValorExpresion");
+const Round = require("./Round");
+const ToLower = require("./ToLower");
+const ToUpper = require("./ToUpper");
+const Truncate = require("./Truncate");
+const Typeof = require('./TypeOf');
+const Length = require("./Length");
 
 
 
@@ -21,6 +27,27 @@ function Operacion(_expresion,_ambito){
         return Relacional(_expresion, _ambito)
     }else if(_expresion.tipo === TIPO_OPERACION.AND || _expresion.tipo === TIPO_OPERACION.OR || _expresion.tipo === TIPO_OPERACION.NOT){
         return Logica(_expresion, _ambito)
+    }
+    else if (_expresion.tipo_dato===TIPO_INSTRUCCION.TOLOWER){
+        return ToLower(_expresion,_ambito)
+
+    } else if (_expresion.tipo_dato===TIPO_INSTRUCCION.TOUPPER){
+        return ToUpper(_expresion,_ambito)
+        
+    }else if (_expresion.tipo_dato===TIPO_INSTRUCCION.TRUNCATE){
+        return Truncate(_expresion,_ambito)
+
+    }
+    else if (_expresion.tipo_dato===TIPO_INSTRUCCION.ROUND){
+        return Round(_expresion,_ambito)
+
+    }else if (_expresion.tipo_dato===TIPO_INSTRUCCION.TYPEOF){
+        return Typeof(_expresion,_ambito)
+
+    }else if (_expresion.tipo_dato===TIPO_INSTRUCCION.LENGTH){
+        //console.log(_expresion)
+        return Length(_expresion,_ambito)
+
     }
 
 }

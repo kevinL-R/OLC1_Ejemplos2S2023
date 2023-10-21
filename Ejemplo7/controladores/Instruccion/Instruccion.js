@@ -121,7 +121,52 @@ const Instruccion ={
 
         }
 
-    }
+    },nuevoToLower: function (_valor, _linea, _columna) {
+        return {
+            tipo_dato: TIPO_INSTRUCCION.TOLOWER,
+            valor: _valor,
+            linea: _linea,
+            columna: _columna
+        }
+    }, nuevoToUpper: function (_valor, _linea, _columna) {
+        return {
+            tipo_dato: TIPO_INSTRUCCION.TOUPPER,
+            valor: _valor,
+            linea: _linea,
+            columna: _columna
+        }
+        
+    }, nuevoTruncate: function (_valor, _linea, _columna) {
+        return {
+            tipo_dato: TIPO_INSTRUCCION.TRUNCATE,
+            valor: _valor,
+            linea: _linea,
+            columna: _columna
+        }
+    }, nuevoRound: function (_valor, _linea, _columna) {
+        return {
+            tipo_dato: TIPO_INSTRUCCION.ROUND,
+            valor: _valor,
+            linea: _linea,
+            columna: _columna
+        }
+    }, nuevoTypeof: function (_valor, _linea, _columna) {
+        return {
+            tipo_dato: TIPO_INSTRUCCION.TYPEOF,
+            valor: _valor,
+            linea: _linea,
+            columna: _columna
+        }
+    }, nuevoLength :function(_valor, _linea, _columna) {
+        return {
+            tipo_dato: TIPO_INSTRUCCION.LENGTH,
+            valor: _valor,
+            linea: _linea,
+            columna: _columna
+        }
+        
+        
+    },
     
 
 }

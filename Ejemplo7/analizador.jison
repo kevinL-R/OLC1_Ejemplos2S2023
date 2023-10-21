@@ -20,6 +20,12 @@
 "if"                    return 'Rif'
 "else"                  return 'Relse'
 "While"                 return 'Rwhile'
+"toLower"               return 'Rtolower'
+"length"                return 'Rlength'
+"toUpper"               return 'RtoUpper'
+"truncate"              return 'Rtruncate'
+"round"                 return 'Rround'
+"typeof"                return 'Rtypeof'
 
 [0-9]+("."[0-9]+)\b    return 'decimal'
 "."                     return 'punto'
@@ -93,11 +99,40 @@ CUERPO: DEC_VAR ptcoma {$$=$1;}                                           //DECL
 
 ;
 METODOS: Rvoid identificador parA parC llaveA INSTRUCCIONES llaveC {$$ = INSTRUCCION.nuevoMetodo($2, null, $6, this._$.first_line,this._$.first_column+1)}
-        
+         | Rvoid identificador parA LIST_PARAMETROS parC llaveA INSTRUCCIONES llaveC {$$ = INSTRUCCION.nuevoMetodo($2, $4, $7, this._$.first_line,this._$.first_column+1)}
 ;
 MAIN: Rmain identificador parA parC ptcoma {$$ = INSTRUCCION.nuevoMain($2, null, this._$.first_line,this._$.first_column+1)}
-      
+       | Rmain identificador parA PARAMETROS_LLAMADA parC ptcoma {$$ = INSTRUCCION.nuevoMain($2, $4, this._$.first_line,this._$.first_column+1)}
        
+;
+LIST_PARAMETROS: LIST_PARAMETROS coma PARAMETROS {$1.push($3); $$=$1;}  
+        |PARAMETROS {$$=[$1];}
+;
+
+PARAMETROS_LLAMADA: PARAMETROS_LLAMADA coma EXPRESION {$1.push($3); $$=$1;}  
+        | EXPRESION {$$=[$1];}
+;
+
+
+PARAMETROS: TIPO identificador {$$ = INSTRUCCION.nuevaDeclaracion($2, null, $1, this._$.first_line,this._$.first_column+1)}
+;
+
+TOLOWER: Rtolower parA EXPRESION parC {$$= INSTRUCCION.nuevoToLower($3, this._$.first_line, this._$.first_column+1);}
+;
+
+LENGTH: Rlength parA EXPRESION parC {$$= INSTRUCCION.nuevoLength($3, this._$.first_line, this._$.first_column+1);}
+;
+
+TOUPPER: RtoUpper parA EXPRESION parC {$$= INSTRUCCION.nuevoToUpper($3, this._$.first_line, this._$.first_column+1);}
+;
+
+TRUNCATE: Rtruncate parA EXPRESION parC {$$= INSTRUCCION.nuevoTruncate($3, this._$.first_line, this._$.first_column+1);}
+;
+
+ROUND: Rround parA EXPRESION parC {$$= INSTRUCCION.nuevoRound($3, this._$.first_line, this._$.first_column+1);}
+;
+
+TYPEOF: Rtypeof parA EXPRESION parC {$$= INSTRUCCION.nuevoTypeof($3, this._$.first_line, this._$.first_column+1);}
 ;
 
 DEC_VAR: TIPO identificador  {$$= INSTRUCCION.nuevaDeclaracion($2,null, $1,this._$.first_line, this._$.first_column+1)}
@@ -167,4 +202,10 @@ EXPRESION: EXPRESION suma EXPRESION{$$= INSTRUCCION.nuevaOperacionBinaria($1,$3,
          | string {$$= INSTRUCCION.nuevoValor($1,TIPO_VALOR.CADENA,this._$.first_line, this._$.first_column+1);}
          | identificador{$$= INSTRUCCION.nuevoValor($1,TIPO_VALOR.IDENTIFICADOR,this._$.first_line, this._$.first_column+1);}
          | char {$$= INSTRUCCION.nuevoValor($1,TIPO_VALOR.CHAR,this._$.first_line, this._$.first_column+1);}
+         | TOLOWER {$$=$1}  // tolower(toupper("hola mundo"))
+         | LENGTH {$$=$1;}
+         | TOUPPER {$$=$1}
+         | TRUNCATE {$$=$1}
+         | ROUND {$$=$1}
+         | TYPEOF {$$=$1}
 ;
